@@ -30,13 +30,13 @@ $table = (new CTableInfo());
 $view_url = $data['view_curl']->getUrl();
 
 $table->setHeader([
+	(new CColHeader(_('Host ID'))),
 	make_sorting_header(_('Name'), 'name', $data['sort'], $data['sortorder'], $view_url),
 	(new CColHeader(_('Interface'))),
 	(new CColHeader(_('Availability'))),
 	(new CColHeader(_('Tags'))),
 	(new CColHeader(_('Problems'))),
 	make_sorting_header(_('Status'), 'status', $data['sort'], $data['sortorder'], $view_url),
-	// (new CColHeader(_('Latest data'))),
 	(new CColHeader(_('Zabbix agent availability'))),
 	(new CColHeader(_('Problems'))),
 	(new CColHeader(_('Graphs'))),
@@ -97,6 +97,7 @@ foreach ($data['hosts'] as $hostid => $host) {
 	}
 
 	$table->addRow([
+		(new CSpan(_($host['hostid']))),
 		[$host_name, $maintenance_icon],
 		(new CCol($host_interface))->addClass(ZBX_STYLE_NOWRAP),
 		getHostAvailabilityTable($host),
@@ -105,16 +106,8 @@ foreach ($data['hosts'] as $hostid => $host) {
 		($host['status'] == HOST_STATUS_MONITORED)
 			? (new CSpan(_('Enabled')))->addClass(ZBX_STYLE_GREEN)
 			: (new CSpan(_('Disabled')))->addClass(ZBX_STYLE_RED),
-		// [
-		// 	new CLink(_('Latest data'),
-		// 		(new CUrl('zabbix.php'))
-		// 			->setArgument('action', 'latest.view')
-		// 			->setArgument('filter_set', '1')
-		// 			->setArgument('filter_hostids', [$host['hostid']])
-		// 	)
-		// ],
 		[
-			CViewHelper::showNum('123')
+			(new CSpan(_($host['zabbixAgentAvailability'])))
 		],
 		[
 			new CLink(_('Problems'),
