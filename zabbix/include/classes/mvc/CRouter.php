@@ -91,6 +91,7 @@ class CRouter {
 		'hintbox.actionlist'			=> ['CControllerHintboxActionlist',					'layout.json',			'hintbox.actionlist'],
 		'hintbox.eventlist'				=> ['CControllerHintboxEventlist',					'layout.json',			'hintbox.eventlist'],
 		'host.view'						=> ['CControllerHostView',							'layout.htmlpage',		'monitoring.host.view'],
+		'host.view.report'		        => ['CControllerHostViewReport',					'layout.htmlpage',		'monitoring.host.view.report'],
 		'host.view.refresh'				=> ['CControllerHostViewRefresh',					'layout.json',			'monitoring.host.view.refresh'],
 		'hostmacros.list'				=> ['CControllerHostMacrosList',					'layout.json',			'hostmacros.list'],
 		'housekeeping.edit'				=> ['CControllerHousekeepingEdit',					'layout.htmlpage',		'administration.housekeeping.edit'],

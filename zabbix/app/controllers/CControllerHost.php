@@ -231,55 +231,6 @@ abstract class CControllerHost extends CController {
 			$host['tags'] = $tags[$host['hostid']];
 		}
 
-		// Get list of hostIds
-		$hostIds = [];
-		foreach ($hosts as &$host) {
-			$hostIds[$host['hostid']] = true;
-		}
-
-		// Get items from DB
-		$items = [];
-		if ($hostIds) {
-			$items = API::Item()->get([
-				'output' => ['itemid', 'name', 'hostid', 'value_type'],
-				'hostids' => array_keys($hostIds),
-				'filter' => ['name' => 'Zabbix agent availability'],
-				'preservekeys' => true
-			]);
-		}
-
-		// Get list of itemIds
-		$itemIds = [];
-		foreach ($items as &$item) {
-			$itemIds[$item['itemid']] = true;
-		}
-
-		// GET history from DB
-		$history = [];
-		if ($itemIds) {
-			$history = API::History()->get([
-				'output' => ['itemid', 'clock', 'value'],
-				'history' => 3,
-				'itemids' => array_keys($itemIds),
-				'limit' => 1,
-				'sortfield' => 'clock',
-				'sortorder' => ZBX_SORT_DOWN
-			]);
-		}
-
-		foreach ($hosts as &$host) {
-			$host['zabbixAgentAvailability'] = 'N/A';
-
-			foreach ($items as &$item) {
-				if ($item['hostid'] == $host['hostid']) {
-					foreach ($history as &$history) {
-						if ($history['itemid'] == $item['itemid']) {
-							$host['zabbixAgentAvailability'] = $history['value'];
-						}
-					}
-				}
-			}
-		}
 		unset($host);
 
 		return [

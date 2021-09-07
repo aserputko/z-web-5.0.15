@@ -20,7 +20,7 @@
 **/
 
 
-class CControllerHostView extends CControllerHost {
+class CControllerHostViewReport extends CControllerHost {
 
 	protected function init(): void {
 		$this->disableSIDValidation();
