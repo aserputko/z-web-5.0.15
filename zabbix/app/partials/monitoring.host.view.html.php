@@ -36,7 +36,8 @@ $table->setHeader([
 	(new CColHeader(_('Tags'))),
 	(new CColHeader(_('Problems'))),
 	make_sorting_header(_('Status'), 'status', $data['sort'], $data['sortorder'], $view_url),
-	(new CColHeader(_('Latest data'))),
+	// (new CColHeader(_('Latest data'))),
+	(new CColHeader(_('Zabbix agent availability'))),
 	(new CColHeader(_('Problems'))),
 	(new CColHeader(_('Graphs'))),
 	(new CColHeader(_('Screens'))),
@@ -104,13 +105,16 @@ foreach ($data['hosts'] as $hostid => $host) {
 		($host['status'] == HOST_STATUS_MONITORED)
 			? (new CSpan(_('Enabled')))->addClass(ZBX_STYLE_GREEN)
 			: (new CSpan(_('Disabled')))->addClass(ZBX_STYLE_RED),
+		// [
+		// 	new CLink(_('Latest data'),
+		// 		(new CUrl('zabbix.php'))
+		// 			->setArgument('action', 'latest.view')
+		// 			->setArgument('filter_set', '1')
+		// 			->setArgument('filter_hostids', [$host['hostid']])
+		// 	)
+		// ],
 		[
-			new CLink(_('Latest data'),
-				(new CUrl('zabbix.php'))
-					->setArgument('action', 'latest.view')
-					->setArgument('filter_set', '1')
-					->setArgument('filter_hostids', [$host['hostid']])
-			)
+			CViewHelper::showNum('123')
 		],
 		[
 			new CLink(_('Problems'),
