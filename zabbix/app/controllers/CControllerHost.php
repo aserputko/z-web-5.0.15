@@ -230,7 +230,6 @@ abstract class CControllerHost extends CController {
 		foreach ($hosts as &$host) {
 			$host['tags'] = $tags[$host['hostid']];
 		}
-
 		unset($host);
 
 		return [
