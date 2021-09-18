@@ -188,7 +188,6 @@ class CControllerHostView extends CControllerHost {
 		$prepared_data = $this->prepareData($filter, $sort, $sortorder);
 
 		$data = [
-			'hosts' => $hosts,
 			'filter' => $filter,
 			'sort' => $sort,
 			'sortorder' => $sortorder,
