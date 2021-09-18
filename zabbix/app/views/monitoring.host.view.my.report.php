@@ -26,7 +26,7 @@
 $this->addJsFile('multiselect.js');
 $this->addJsFile('layout.mode.js');
 
-$this->includeJsFile('monitoring.host.view.js.php');
+$this->includeJsFile('monitoring.host.view.my.report.js.php');
 
 $this->enableLayoutModes();
 $web_layout_mode = $this->getLayoutMode();
@@ -94,10 +94,10 @@ foreach (range(TRIGGER_SEVERITY_NOT_CLASSIFIED, TRIGGER_SEVERITY_COUNT - 1) as $
 }
 
 if ($web_layout_mode == ZBX_LAYOUT_NORMAL) {
-	$widget->addItem((new CFilter((new CUrl('zabbix.php'))->setArgument('action', 'host.view')))
+	$widget->addItem((new CFilter((new CUrl('zabbix.php'))->setArgument('action', 'host.view.my.report')))
 		->setProfile('web.hostsmon.filter')
 		->setActiveTab($data['active_tab'])
-		->addFormItem((new CVar('action', 'host.view'))->removeId())
+		->addFormItem((new CVar('action', 'host.view.my.report'))->removeId())
 		->addFilterTab(_('Filter'), [
 			(new CFormList())
 				->addRow(_('Name'),
@@ -161,7 +161,7 @@ if ($web_layout_mode == ZBX_LAYOUT_NORMAL) {
 	);
 }
 
-$widget->addItem(new CPartial('monitoring.host.view.html', array_intersect_key($data, array_flip([
+$widget->addItem(new CPartial('monitoring.host.view.my.report.html', array_intersect_key($data, array_flip([
 	'filter', 'sort', 'sortorder', 'view_curl', 'hosts', 'config', 'maintenances', 'paging'
 ]))));
 

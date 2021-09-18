@@ -93,6 +93,7 @@ class CRouter {
 		'host.view'						=> ['CControllerHostView',							'layout.htmlpage',		'monitoring.host.view'],
 		'host.view.report'		        => ['CControllerHostViewReport',					'layout.htmlpage',		'monitoring.host.view.report'],
 		'host.view.refresh'				=> ['CControllerHostViewRefresh',					'layout.json',			'monitoring.host.view.refresh'],
+		'host.view.my.report'		    => ['CControllerHostViewMyReport',					'layout.htmlpage',		'monitoring.host.view.my.report'],
 		'hostmacros.list'				=> ['CControllerHostMacrosList',					'layout.json',			'hostmacros.list'],
 		'housekeeping.edit'				=> ['CControllerHousekeepingEdit',					'layout.htmlpage',		'administration.housekeeping.edit'],
 		'housekeeping.update'			=> ['CControllerHousekeepingUpdate',				null,					null],
